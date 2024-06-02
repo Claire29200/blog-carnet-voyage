@@ -6,7 +6,8 @@ class Post extends Model
 {
 
     protected $title;
-    protected $standfirst;
+    protected $image;
+    protected $slug;
     protected $content;
     protected $author;
     protected $creationDate;
@@ -22,9 +23,14 @@ class Post extends Model
         return $this->title;
     }
 
-    function getStandfirst()
+    function getImage()
     {
-        return $this->standfirst;
+        return $this->image;
+    }
+
+    function getSlug()
+    {
+        return $this->slug;
     }
 
     function getContent()
@@ -69,9 +75,13 @@ class Post extends Model
         $this->title = $title;
     }
 
-    function setStandfirst($standfirst)
+    function setImage($image)
     {
-        $this->standfirst = $standfirst;
+        $this->image = $image;
+    }
+    function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 
     function setContent($content)

@@ -15,7 +15,7 @@ class Post extends \controllers\Controller
         \models\Renderer::render("accueil", compact('posts'));
     }
 
-    //Affiche un post en fonction de l'id recupéré par GET
+    //Affiche un article en fonction de l'id recupéré par GET
     function afficher()
     {
         $manager = $this->modelManager;
@@ -31,7 +31,7 @@ class Post extends \controllers\Controller
         $post = $manager->get($id);
 
         if (!$post) {
-            $this->redirectWithError("index.php", "Vous essayez d'afficher un post qui n'existe pas");
+            $this->redirectWithError("index.php", "Vous essayez d'afficher un article qui n'existe pas");
         }
 
         
@@ -49,19 +49,20 @@ class Post extends \controllers\Controller
         if (!\models\Session::isAdmin()) {
             $this->redirectWithError(
                 "index.php",
-                "Il faut être administrateur pour pouvoir ajouter un post"
+                "Il faut être administrateur pour pouvoir ajouter un article"
             );
         }
 
         $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
-        $standfirst = filter_input(INPUT_POST, 'standfirst', FILTER_SANITIZE_SPECIAL_CHARS);
+        $image = filter_input(INPUT_POST, 'image', FILTER_SANITIZE_SPECIAL_CHARS);
+        $slug = filter_input(INPUT_POST, 'slug', FILTER_SANITIZE_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
         $author =  filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
         $creationDate = date('Y-m-d');
         $published = "En attente";
         $userId = $_SESSION['user']['id'];
 
-        if (!$title || !$standfirst || !$content || !$author) {
+        if (!$title || !$image || !$slug || !$content || !$author) {
             $this->redirectWithError(
                 "index.php?controller=Post&action=ajouter",
                 "Veuillez remplir tous les champs du formulaire correctement"
@@ -72,14 +73,15 @@ class Post extends \controllers\Controller
         if (!$token || $token != $_SESSION['token']) {
             $this->redirectWithError(
                 "index.php?controller=Post&action=ajouter",
-                "Vous devez avoir un jeton valide  pour ajouter un post"
+                "Vous devez avoir un jeton valide  pour ajouter un article"
             );
         }
 
         $manager = $this->modelManager;
         $post = new \models\Post([
             'title' => $title,
-            'standfirst' => $standfirst,
+            'image' => $image,
+            'slug' => $slug,
             'content' => $content,
             'author' => $author,
             'creationDate' => $creationDate,
@@ -90,7 +92,7 @@ class Post extends \controllers\Controller
         $manager->add($post);
         $this->redirectWithSuccess(
             "index.php?controller=Post&action=liste",
-            "Post ajouté avec succès"
+            "Article ajouté avec succès"
         );
     }
 
@@ -99,7 +101,7 @@ class Post extends \controllers\Controller
         if (!\models\Session::isAdmin()) {
             $this->redirectWithError(
                 "index.php",
-                "Il faut être administrateur pour modifier un post"
+                "Il faut être administrateur pour modifier un article"
             );
         }
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
@@ -116,7 +118,7 @@ class Post extends \controllers\Controller
         if (!$post) {
             $this->redirectWithError(
                 "index.php?Post&action=liste",
-                "Vous essayez de modifier un post qui n'existe pas"
+                "Vous essayez de modifier un article qui n'existe pas"
             );
         }
         \models\Renderer::render("updatePost", compact('post'));
@@ -127,7 +129,7 @@ class Post extends \controllers\Controller
         if (!\models\Session::isAdmin()) {
             $this->redirectWithError(
                 "index.php",
-                "Vous devez être administrateur pour ajouter un Post"
+                "Vous devez être administrateur pour ajouter un article"
             );
         }
         \models\Renderer::render("addPost");
@@ -138,20 +140,21 @@ class Post extends \controllers\Controller
         if (!\models\Session::isAdmin()) {
             $this->redirectWithError(
                 "index.php",
-                "Vous devez être administrateur pour modifier un Post"
+                "Vous devez être administrateur pour modifier un article"
             );
         }
 
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
         $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
-        $standfirst = filter_input(INPUT_POST, 'standfirst', FILTER_SANITIZE_SPECIAL_CHARS);
+        $image = filter_input(INPUT_POST, 'image', FILTER_SANITIZE_SPECIAL_CHARS);
+        $slug = filter_input(INPUT_POST, 'slug', FILTER_SANITIZE_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
         $author =  filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
         $modificationDate = date('y-m-d');
         $published = filter_input(INPUT_POST, 'published', FILTER_SANITIZE_SPECIAL_CHARS);
         $userId = filter_input(INPUT_POST, 'userId', FILTER_VALIDATE_INT);
 
-        if (!$id || !$title || !$standfirst || !$content || !$author || !$modificationDate || !$published || !$userId) {
+        if ( !$title || !$image || !$slug || !$content || !$author ) {
             $this->redirectWithError(
                 "index.php?controller=Post&action=ajouter",
                 "Veuillez remplir tous les champs du formulaire correctement"
@@ -162,7 +165,7 @@ class Post extends \controllers\Controller
         if (!$token || $token != $_SESSION['token']) {
             $this->redirectWithError(
                 "index.php",
-                "Vous devez avoir un jeton valide  pour modifier un post"
+                "Vous devez avoir un jeton valide  pour modifier un article"
             );
         }
 
@@ -170,7 +173,8 @@ class Post extends \controllers\Controller
         $post = new \models\Post([
             'id' => $id,
             'title' => $title,
-            'standfirst' => $standfirst,
+            'image' => $image,
+            'slug' => $slug,
             'content' => $content,
             'author' => $author,
             'modificationDate' => $modificationDate,
@@ -182,7 +186,7 @@ class Post extends \controllers\Controller
         $manager = new $this->modelManager;
         $this->redirectWithSuccess(
             "index.php?controller=Post&action=liste",
-            "Post modifié avec succès"
+            "Article modifié avec succès"
         );
     }
 
@@ -191,7 +195,7 @@ class Post extends \controllers\Controller
         if (!\models\Session::isAdmin()) {
             $this->redirectWithError(
                 "index.php",
-                "Vous devez être administrateur pour afficher la liste des posts"
+                "Vous devez être administrateur pour afficher la liste des articles"
             );
         }
         $manager = $this->modelManager;
@@ -204,7 +208,7 @@ class Post extends \controllers\Controller
         if (!\models\Session::isAdmin()) {
             $this->redirectWithError(
                 "index.php",
-                "Vous devez être administrateur pour supprimer un post"
+                "Vous devez être administrateur pour supprimer un article"
             );
         }
         $manager = $this->modelManager;
@@ -221,7 +225,7 @@ class Post extends \controllers\Controller
         if (!$token || $token != $_SESSION['token']) {
             $this->redirectWithError(
                 "index.php",
-                "Vous devez avoir un jeton valide  pour supprimer un post"
+                "Vous devez avoir un jeton valide  pour supprimer un article"
             );
         }
        
@@ -229,12 +233,12 @@ class Post extends \controllers\Controller
         if (!$post) {
             $this->redirectWithError(
                 "index.php?controller=Post&action=liste",
-                "Vous essayez de supprimer un post qui n'existe pas"
+                "Vous essayez de supprimer un article qui n'existe pas"
             );
         }
         $this->redirectWithSuccess(
             "index.php?controller=Post&action=liste",
-            "Post supprimé avec succès"
+            "Article supprimé avec succès"
         );
     }
 }

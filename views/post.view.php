@@ -1,6 +1,6 @@
 <section class="hero-banner d-flex align-items-center">
   <div class="container text-center">
-    <h2>Article / Post</h2>
+    <h2>Article</h2>
   </div>
 </section>
 
@@ -11,13 +11,14 @@
       <div class="col-lg-8 posts-list">
         <div class="single-post">
           <div class="feature-img">
-            <img class="img-fluid" src="assets/img/blog/m-blog-2.jpg" alt="">
+          <a><img src="<?= $post->getImage() ?>"
+                    width='80%'></a>
           </div>
           <div class="blog_details">
             <h2><?= $post->getTitle(); ?></h2>
             <p class="date"></p>
             <p class="excert">
-              <?= $post->getStandfirst(); ?>
+              <?= $post->getSlug(); ?>
             </p>
 
             <p class="excert">
@@ -76,7 +77,7 @@
                <?php } ?>
             </div>
             <div class="form-group">
-              <button type="submit" class="button button-contactForm">Envoyer Message</button>
+              <button type="submit" class="button button-contactForm">Poster le commentaire</button>
             </div>
           </form>
         </div>

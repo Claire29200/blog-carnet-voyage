@@ -19,7 +19,12 @@
             </div>
             <div class="col-12">
               <div class="form-group">
-                Chapo : <input class="form-control" type="text" name="standfirst">
+                Image : <input class="form-control" type="url" placeholder="Lien de l'image" name="image">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+               Slug : <input class="form-control" type="text" name="slug">
               </div>
             </div>
             <div class="col-12">

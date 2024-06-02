@@ -29,7 +29,7 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                 Pseudo : <input class="form-control" type ="text" name="nickname">
+                 Pseudo : <input class="form-control" type ="text" name="pseudo">
                 </div>
               </div>              
               <div class="col-12">

@@ -8,7 +8,7 @@ class User extends Model
     protected $lastName;
     protected $firstName;
     protected $email;
-    protected $nickname;
+    protected $pseudo;
     protected $pswd;
     protected $userRole;
 
@@ -29,9 +29,9 @@ class User extends Model
         return $this->email;
     }
 
-    function getNickname()
+    function getPseudo()
     {
-        return $this->nickname;
+        return $this->pseudo;
     }
 
     function getPswd()
@@ -62,9 +62,9 @@ class User extends Model
         $this->email = $email;
     }
 
-    function setNickname($nickname)
+    function setPseudo($pseudo)
     {
-        $this->nickname = $nickname;
+        $this->pseudo= $pseudo;
     }
 
     function setPswd($pswd)

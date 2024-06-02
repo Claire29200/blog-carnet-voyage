@@ -24,7 +24,12 @@
             </div>
             <div class="col-12">
               <div class="form-group">
-                Chapo : <input class="form-control" type="text" name="standfirst" value="<?= $post->getStandfirst(); ?>">
+                Titre : <input class="form-control" type="text" name="title" value="<?= $post->getImage(); ?>">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                Slug : <input class="form-control" type="text" name="slug" value="<?= $post->getSlug(); ?>">
               </div>
             </div>
             <div class="col-12">

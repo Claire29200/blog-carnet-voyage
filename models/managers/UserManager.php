@@ -28,12 +28,12 @@ class UserManager extends \models\Database
 
   public function add(\models\User $user)
   {
-    $query = $this->db->prepare('INSERT INTO user(lastName, firstName, email, nickname, pswd, userRole)
-        VALUES(:lastName, :firstName, :email, :nickname, :pswd, :userRole)');
+    $query = $this->db->prepare('INSERT INTO user(lastName, firstName, email, pseudo, pswd, userRole)
+        VALUES(:lastName, :firstName, :email, :pseudo, :pswd, :userRole)');
     $query->bindValue(':lastName', $user->getLastName());
     $query->bindValue(':firstName', $user->getFirstName());
     $query->bindValue(':email', $user->getEmail());
-    $query->bindValue(':nickname', $user->getNickname());
+    $query->bindValue(':pseudo', $user->getPseudo());
     $query->bindValue(':pswd', $user->getPswd());
     $query->bindValue(':userRole', $user->getUserRole());
     $query->execute();
@@ -42,7 +42,7 @@ class UserManager extends \models\Database
   public function get($id)
   {
     $id = (int) $id;
-    $query = $this->db->prepare('SELECT id, lastName, firstName, email, nickname, pswd, userRole FROM user WHERE id = ' . $id);
+    $query = $this->db->prepare('SELECT id, lastName, firstName, email, pseudo, pswd, userRole FROM user WHERE id = ' . $id);
     $query->execute();
     if ($query->rowCount() != 1) {
       return false;
@@ -52,10 +52,10 @@ class UserManager extends \models\Database
     }
   }
 
-  public function getNickname($id)
+  public function getPseudo($id)
   {
     $id = (int) $id;
-    $query = $this->db->prepare('SELECT nickname FROM user WHERE id = ' . $id);
+    $query = $this->db->prepare('SELECT pseudo FROM user WHERE id = ' . $id);
     $query->execute();
     $data = $query->fetch(\PDO::FETCH_ASSOC);
     //Permet d'obtenir le resultat en chaine de caratère et non en tableau 
@@ -66,7 +66,7 @@ class UserManager extends \models\Database
   {
 
 
-    $query = $this->db->prepare('SELECT id, lastName, firstName, email, nickname, pswd, userRole FROM user');
+    $query = $this->db->prepare('SELECT id, lastName, firstName, email, pseudo, pswd, userRole FROM user');
     $query->execute();
 
     $query->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\models\User');
@@ -78,10 +78,10 @@ class UserManager extends \models\Database
   public function update(\models\User $user)
   {
     $query = $this->db->prepare('UPDATE user SET lastName = :lastName, firstName = :firstName,  
-                                              nickname = :nickname,  userRole = :userRole WHERE id = :id');
+                                              pseudo = :pseudo,  userRole = :userRole WHERE id = :id');
     $query->bindValue(':lastName', $user->getLastName());
     $query->bindValue(':firstName', $user->getFirstName());
-    $query->bindValue(':nickname', $user->getNickname());
+    $query->bindValue(':pseudo', $user->getPseudo());
     $query->bindValue(':userRole', $user->getUserRole());
     $query->bindValue(':id', $user->getId());
     $query->execute();
@@ -94,10 +94,10 @@ class UserManager extends \models\Database
     return $query->fetch(\PDO::FETCH_ASSOC);
   }
 
-  public function getByNickname($nickname)
+  public function getByPseudo($pseudo)
   {
-    $query = $this->db->prepare('SELECT * FROM user WHERE nickname = :nickname');
-    $query->execute([':nickname' => $nickname]);
+    $query = $this->db->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
+    $query->execute([':pseudo' => $pseudo]);
     return $query->fetch(\PDO::FETCH_ASSOC);
   }
 }

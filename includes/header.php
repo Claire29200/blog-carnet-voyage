@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="assets/img/favicon.png" type="image/png">
-    <title>Blog PHP Gaël Lerique</title>
+    <title>Mon blog carnet de voyage, mon projet de fin de formation pour valider mon titre de développeuse Web Web mobile au sein de l'AFPA</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/themify-icons.css">
-    <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/vendors/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/vendors/animate-css/animate.css">
     <!-- main css -->
@@ -33,25 +33,25 @@
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
-                            <li class="nav-item"><a class="nav-link" href="upload/cv.pdf" target="_blank">Mon CV</a></li>  
+                            <li class="nav-item"><a class="nav-link" href="https://claire29200.my.canva.site/" target="_blank">Mon Portfolio</a></li>  
                             <?php if (\models\Session::isAdmin()) { ?>
                             <li class="nav-item submenu dropdown">                            
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrateur</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="index.php?controller=Post&action=ajouter">Ajouter un post </a></li> 
-                                    <li class="nav-item"><a class="nav-link" href="index.php?controller=Post&action=liste">Liste des posts</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="index.php?controller=Post&action=ajouter">Ajouter un article </a></li> 
+                                    <li class="nav-item"><a class="nav-link" href="index.php?controller=Post&action=liste">Liste des articles</a></li>
                                     <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=liste">Liste utilisateurs</a></li>
                                     <li class="nav-item"><a class="nav-link" href="index.php?controller=Comment&action=liste">Commentaires</a></li>                                                                          
                                 </ul>
                             </li>
                                 <?php }?>
                                 <?php if (!\models\Session::isConnected()) { ?>   
-                            <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=formLogin">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=formLogin">Se connecter</a></li>
                                 <?php } 
                                 if (\models\Session::isConnected()) { ?>
-                            <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=logout">Logout</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=logout">Déconnexion</a></li>
                                 <?php }?>
-                                <li class="nav-item"><a class="nav-link" href="index.php?controller=Contact&action=formContact">Contact</a></li>        
+                                       
                         </ul>
                     </div>
                     <div class="right-button">

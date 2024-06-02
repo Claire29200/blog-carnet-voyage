@@ -30,10 +30,11 @@ class PostManager extends \models\Database
 
   public function add(\models\Post $post)
   {
-    $query = $this->db->prepare('INSERT INTO post(title, standfirst, content, author, creationDate, published, userId)
-    VALUES(:title, :standfirst, :content, :author, :creationDate, :published, :userId)');
+    $query = $this->db->prepare('INSERT INTO post(title, image, slug, content, author, creationDate, published, userId)
+    VALUES(:title, :image, :slug, :content, :author, :creationDate, :published, :userId)');
     $query->bindValue(':title', $post->getTitle());
-    $query->bindValue(':standfirst', $post->getStandfirst());
+    $query->bindValue(':image', $post->getImage());
+    $query->bindValue(':slug', $post->getSlug());
     $query->bindValue(':content', $post->getContent());
     $query->bindValue(':author', $post->getAuthor());
     $query->bindValue(':creationDate', $post->getCreationDate());
@@ -56,7 +57,7 @@ class PostManager extends \models\Database
   public function get($id)
   {
     $id = (int) $id;
-    $query = $this->db->prepare('SELECT id, title, standfirst, content, author, date_format(creationDate,"%d/%m/%Y") AS creationDate, 
+    $query = $this->db->prepare('SELECT id, title, image, slug, content, author, date_format(creationDate,"%d/%m/%Y") AS creationDate, 
                                     date_format(modificationDate,"%d/%m/%Y") AS modificationDate, published, userId FROM post WHERE id = ' . $id);
     $query->execute();
     if ($query->rowCount() != 1) {
@@ -83,7 +84,7 @@ class PostManager extends \models\Database
   {
 
 
-    $query = $this->db->prepare('SELECT id, title, standfirst, content, date_format(creationDate,"%d/%m/%Y") AS creationDate,
+    $query = $this->db->prepare('SELECT id, title, image, slug, content, date_format(creationDate,"%d/%m/%Y") AS creationDate,
                                    date_format(modificationDate,"%d/%m/%Y") AS modificationDate, published, userId FROM post');
     $query->execute();
     $query->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\models\Post');
@@ -97,7 +98,7 @@ class PostManager extends \models\Database
   public function getPublishedList()
   {
 
-    $query = $this->db->prepare('SELECT id, title, standfirst, content, author, date_format(creationDate,"%d/%m/%Y") AS creationDate,
+    $query = $this->db->prepare('SELECT id, title, image, slug, content, author, date_format(creationDate,"%d/%m/%Y") AS creationDate,
                                      date_format(modificationDate,"%d/%m/%Y") AS modificationDate, published, userId FROM post WHERE published = "Publié" ORDER BY id DESC');
     $query->execute();
     $query->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\models\Post');
@@ -109,10 +110,11 @@ class PostManager extends \models\Database
 
   public function update(\models\Post $post)
   {
-    $query = $this->db->prepare('UPDATE post SET title = :title, standfirst = :standfirst, content = :content, author = :author,  
+    $query = $this->db->prepare('UPDATE post SET title = :title, image = :image, slug = :slug, content = :content, author = :author,  
                                                  modificationDate = :modificationDate, published = :published, userId = :userId  WHERE id = :id');
     $query->bindValue(':title', $post->getTitle());
-    $query->bindValue(':standfirst', $post->getStandfirst());
+    $query->bindValue(':image', $post->getImage());
+    $query->bindValue(':slug', $post->getSlug());
     $query->bindValue(':content', $post->getContent());
     $query->bindValue(':author', $post->getAuthor());
     $query->bindValue(':modificationDate', $post->getModificationDate());

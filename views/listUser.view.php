@@ -20,7 +20,7 @@
                     ?>
                         <div class="table-row">
                             <div class="serial"><?= $value->getId(); ?></div>
-                            <div class="serial"><?= $value->getNickname(); ?></div>
+                            <div class="serial"><?= $value->getPseudo(); ?></div>
                             <div class="serial"><?= $value->getUserRole(); ?></div>
                             <div class="serial"><a href="index.php?controller=User&action=modifier&id=<?= $value->getId(); ?>">Modifier</a></div>
                         </div>

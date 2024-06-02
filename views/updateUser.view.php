@@ -29,7 +29,7 @@
             </div>
             <div class="col-12">
               <div class="form-group">
-                Nickname : <input class="form-control" type="text" name="nickname" value="<?= $user->getNickname(); ?>">
+               Pseudo : <input class="form-control" type="text" name="pseudo" value="<?= $user->getPseudo(); ?>">
               </div>
             </div>
             <div class="col-12">

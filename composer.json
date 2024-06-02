@@ -1,0 +1,15 @@
+{
+    "name": "clair/blog-master",
+    "autoload": {
+        "psr-4": {
+            "Clair\\BlogMaster\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Claire29200",
+            "email": "156660483+Claire29200@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}

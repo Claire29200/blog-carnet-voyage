@@ -16,15 +16,15 @@ class User extends \controllers\Controller
         $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
         $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_SPECIAL_CHARS);
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-        $nickname = filter_input(INPUT_POST, 'nickname', FILTER_SANITIZE_SPECIAL_CHARS);
+        $pseudo = filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_SPECIAL_CHARS);
         $pswd = filter_input(INPUT_POST, 'pswd');
         $confirmPswd = filter_input(INPUT_POST, 'confirmPswd');
 
 
-        if (!$lastName || !$firstName || !$email || !$nickname || !$pswd || !$confirmPswd) {
+        if (!$lastName || !$firstName || !$email || !$pseudo || !$pswd || !$confirmPswd) {
             $this->redirectWithError(
                 "index.php?controller=User&action=ajouter",
-                "Veuillez remplir tous les champs du formulaire correctement"
+                "Veuillez remplir tous les champs du formulaire "
             );
         }
 
@@ -40,7 +40,7 @@ class User extends \controllers\Controller
         }
 
         $manager =  $this->modelManager;
-        $user = $manager->getByNickname($nickname);
+        $user = $manager->getByPseudo($pseudo);
 
         // Si un utilisateur existe avec ce pseudo, alors on affiche une erreur
         if ($user) {
@@ -58,15 +58,16 @@ class User extends \controllers\Controller
             );
         }
         //Création d'une clé de hachage pour le mot de passe
-        $password = password_hash($_POST['pswd'], PASSWORD_DEFAULT);
-        //Le role d'un utilisateur par defaut est Membre
+        $password = password_hash($_POST['pswd'], PASSWORD_ARGON2ID);
+        // password hash est le codage et PASSWORD_ARGON2ID et le cryptage. pas de salt car c'est déprécié depuis php 8.
+        //Le role d'un utilisateur par defaut est Utilisateur
         $userRole =  "Membre";
 
         $user = new \models\User([
             'lastName' => $lastName,
             'firstName' => $firstName,
             'email' => $email,
-            'nickname' => $nickname,
+            'pseudo$pseudo' => $pseudo,
             'pswd' => $password,
             'userRole' => $userRole
         ]);
@@ -126,10 +127,10 @@ class User extends \controllers\Controller
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
         $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
         $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_SPECIAL_CHARS);
-        $nickname = filter_input(INPUT_POST, 'nickname', FILTER_SANITIZE_SPECIAL_CHARS);
+        $pseudo = filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_SPECIAL_CHARS);
         $userRole = filter_input(INPUT_POST, 'userRole', FILTER_SANITIZE_SPECIAL_CHARS);
 
-        if (!$id || !$lastName || !$firstName  || !$nickname || !$userRole) {
+        if (!$id || !$lastName || !$firstName  || !$pseudo || !$userRole) {
             $this->redirectWithError(
                 "index.php?controller=User&action=liste",
                 "Veuillez remplir tous les champs du formulaire correctement"
@@ -149,7 +150,7 @@ class User extends \controllers\Controller
             'id' => $id,
             'firstName' => $firstName,
             'lastName' => $lastName,
-            'nickname' => $nickname,
+            'pseudo$pseudo' => $pseudo,
             'userRole' => $userRole
         ]);
 

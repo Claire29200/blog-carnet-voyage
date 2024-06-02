@@ -91,7 +91,7 @@ class CommentManager extends \models\Database
     
     foreach ($comments as $comment) {
       $userManager = new \models\managers\UserManager();
-      $comment->setAuthor($userManager->getNickname($comment->getUserId()));
+      $comment->setAuthor($userManager->getPseudo($comment->getUserId()));
     }
 
     return $comments;
@@ -111,7 +111,7 @@ class CommentManager extends \models\Database
 
     foreach ($comments as $comment) {
       $userManager = new \models\managers\UserManager();
-      $comment->setAuthor($userManager->getNickname($comment->getUserId()));
+      $comment->setAuthor($userManager->getPseudo($comment->getUserId()));
     }
 
     return $comments;
