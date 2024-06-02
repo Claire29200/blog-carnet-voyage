@@ -67,7 +67,7 @@ class User extends \controllers\Controller
             'lastName' => $lastName,
             'firstName' => $firstName,
             'email' => $email,
-            'pseudo$pseudo' => $pseudo,
+            'pseudo' => $pseudo,
             'pswd' => $password,
             'userRole' => $userRole
         ]);
@@ -75,7 +75,7 @@ class User extends \controllers\Controller
         $manager->add($user);
         $this->redirectWithSuccess(
             "index.php",
-            "Vous pouvez desormais commenter les articles après vous etre identifié"
+            "Vous pouvez desormais commenter les articles après vous être identifié"
         );
     }
 
@@ -150,7 +150,7 @@ class User extends \controllers\Controller
             'id' => $id,
             'firstName' => $firstName,
             'lastName' => $lastName,
-            'pseudo$pseudo' => $pseudo,
+            'pseudo' => $pseudo,
             'userRole' => $userRole
         ]);
 

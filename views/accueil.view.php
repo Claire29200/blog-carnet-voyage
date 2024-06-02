@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-lg-6 offset-lg-6 col-xl-5 offset-xl-7">
                         <div class="banner_content">
-                            <h3>Claire Simonot<br/>Développeuse Web</h3>
+                            <h3>Claire Simonot<br> Développeuse Web</h3>
                             <p>Ce site web est mon projet de fin de formation. <br>Ce sera un blog carnet de voyage.<br> Merci de visiter mon site!</p>
                          </div>
                     </div>

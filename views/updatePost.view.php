@@ -24,7 +24,7 @@
             </div>
             <div class="col-12">
               <div class="form-group">
-                Titre : <input class="form-control" type="text" name="title" value="<?= $post->getImage(); ?>">
+                Image : <input class="form-control" type="text" name="image" value="<?= $post->getImage(); ?>">
               </div>
             </div>
             <div class="col-12">

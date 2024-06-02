@@ -154,9 +154,9 @@ class Post extends \controllers\Controller
         $published = filter_input(INPUT_POST, 'published', FILTER_SANITIZE_SPECIAL_CHARS);
         $userId = filter_input(INPUT_POST, 'userId', FILTER_VALIDATE_INT);
 
-        if ( !$title || !$image || !$slug || !$content || !$author ) {
+        if (!$id || !$image || !$title || !$slug || !$content || !$author || !$modificationDate || !$published || !$userId)  {
             $this->redirectWithError(
-                "index.php?controller=Post&action=ajouter",
+                "index.php?Post&action=liste",
                 "Veuillez remplir tous les champs du formulaire correctement"
             );
         }
