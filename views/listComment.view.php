@@ -20,7 +20,7 @@
                     foreach ($comments as $value) {
                     ?>
                         <div class="table-row">
-                            <div class="serial"><?= $value->getId(); ?></div>
+                            <div class="serial"><?= $value->getIdComment(); ?></div>
                             <div class="serial"><?= $value->getContent(); ?></div>
                             <div class="serial"><?= $value->getAuthor(); ?></div>
                             <div class="serial"><a href="index.php?controller=Comment&action=valider&id=<?= $value->getId(); ?>">Valider</a></div>

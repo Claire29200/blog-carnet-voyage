@@ -61,8 +61,9 @@ class Post extends \controllers\Controller
         $creationDate = date('Y-m-d');
         $published = "En attente";
         $userId = $_SESSION['user']['id'];
+        //$Id_categorie = [filter_input(INPUT_POST, 'categorie', FILTER_SANITIZE_SPECIAL_CHARS)];
 
-        if (!$title || !$image || !$slug || !$content || !$author) {
+         if (!$title || !$image || !$slug || !$content || !$author ) {
             $this->redirectWithError(
                 "index.php?controller=Post&action=ajouter",
                 "Veuillez remplir tous les champs du formulaire correctement"
@@ -87,6 +88,8 @@ class Post extends \controllers\Controller
             'creationDate' => $creationDate,
             'published' => $published,
             'userId' => $userId
+            
+
         ]);
 
         $manager->add($post);
@@ -150,7 +153,7 @@ class Post extends \controllers\Controller
         $slug = filter_input(INPUT_POST, 'slug', FILTER_SANITIZE_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
         $author =  filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
-        $modificationDate = date('y-m-d');
+        $modificationDate= date('y-m-d');
         $published = filter_input(INPUT_POST, 'published', FILTER_SANITIZE_SPECIAL_CHARS);
         $userId = filter_input(INPUT_POST, 'userId', FILTER_VALIDATE_INT);
 

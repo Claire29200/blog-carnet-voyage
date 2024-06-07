@@ -30,8 +30,8 @@ class PostManager extends \models\Database
 
   public function add(\models\Post $post)
   {
-    $query = $this->db->prepare('INSERT INTO post(title, image, slug, content, author, creationDate, published, userId)
-    VALUES(:title, :image, :slug, :content, :author, :creationDate, :published, :userId)');
+    $query = $this->db->prepare('INSERT INTO post(title, image, slug, content, author, creationDate published, Id_user)
+    VALUES(:title, :image, :slug, :content, :author, :creationDate :published, :userId)');
     $query->bindValue(':title', $post->getTitle());
     $query->bindValue(':image', $post->getImage());
     $query->bindValue(':slug', $post->getSlug());
@@ -43,9 +43,9 @@ class PostManager extends \models\Database
     $query->execute();
   }
 
-  public function delete($id)
+  public function delete($Id_post)
   {
-    $query = $this->db->prepare('DELETE FROM post WHERE id = ' . $id);
+    $query = $this->db->prepare('DELETE FROM post WHERE id = ' . $Id_post);
     $query->execute();
     if ($query->rowCount() != 1) {
       return false;
@@ -57,8 +57,8 @@ class PostManager extends \models\Database
   public function get($id)
   {
     $id = (int) $id;
-    $query = $this->db->prepare('SELECT id, title, image, slug, content, author, date_format(creationDate,"%d/%m/%Y") AS creationDate, 
-                                    date_format(modificationDate,"%d/%m/%Y") AS modificationDate, published, userId FROM post WHERE id = ' . $id);
+    $query = $this->db->prepare('SELECT id, title, image, slug, content, author, date_format(creationDate"%d/%m/%Y") AS creationDate 
+                                    date_format(modifiionDate"%d/%m/%Y") AS modifiionDate published,Id_user FROM post WHERE id = ' . $id);
     $query->execute();
     if ($query->rowCount() != 1) {
       return false;
@@ -69,9 +69,9 @@ class PostManager extends \models\Database
     }
   }
 
-  public function getPostTitle($postId){
+  public function getPostTitle($id){
 
-    $query = $this->db->prepare('SELECT title FROM post WHERE id = ' . $postId);
+    $query = $this->db->prepare('SELECT title FROM post WHERE id = ' . $id);
     $query->execute();
 
     $data = $query->fetch(\PDO::FETCH_ASSOC);

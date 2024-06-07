@@ -7,8 +7,8 @@ class User extends Model
 
     protected $lastName;
     protected $firstName;
-    protected $email;
     protected $pseudo;
+    protected $email;
     protected $pswd;
     protected $userRole;
 

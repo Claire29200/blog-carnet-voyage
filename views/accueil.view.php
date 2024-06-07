@@ -30,7 +30,7 @@
       foreach($posts as $value){ 
         ?>  
                 <div class="col-lg-4 col-md-6 ">
-                <a href = "index.php?controller=Post&action=afficher&id=<?= $value->getId(); ?>">
+                <a href = "index.php?controller=Post&action=afficher&id=<?= $value->getIdPost(); ?>">
                     <div class="single-blog">
                         <div class="thumb">
                         <img class="img-fluid w-100" src="<?= $value->getImage() ?>" alt="">

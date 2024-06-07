@@ -15,13 +15,13 @@ class User extends \controllers\Controller
 
         $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
         $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_SPECIAL_CHARS);
-        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $pseudo = filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_SPECIAL_CHARS);
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $pswd = filter_input(INPUT_POST, 'pswd');
         $confirmPswd = filter_input(INPUT_POST, 'confirmPswd');
 
 
-        if (!$lastName || !$firstName || !$email || !$pseudo || !$pswd || !$confirmPswd) {
+        if (!$lastName || !$firstName || !$pseudo || !$email ||  !$pswd || !$confirmPswd) {
             $this->redirectWithError(
                 "index.php?controller=User&action=ajouter",
                 "Veuillez remplir tous les champs du formulaire "
@@ -90,15 +90,15 @@ class User extends \controllers\Controller
 
 
 
-        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-        if (!$id) {
+        $Id_user = filter_input(INPUT_GET, 'Id_user', FILTER_VALIDATE_INT);
+        if (!$Id_user) {
             $this->redirectWithError(
                 "index.php?controller=User&action=liste",
                 "Vous devez préciser un id"
             );
         }
         $manager =  $this->modelManager;
-        $user = $manager->get($id);
+        $user = $manager->get($Id_user);
         if (!$user) {
             $this->redirectWithError(
                 "index.php?controller=User&action=liste",
@@ -124,13 +124,13 @@ class User extends \controllers\Controller
         }
 
 
-        $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        $Id_user = filter_input(INPUT_POST, 'Id_user', FILTER_VALIDATE_INT);
         $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
         $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_SPECIAL_CHARS);
         $pseudo = filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_SPECIAL_CHARS);
         $userRole = filter_input(INPUT_POST, 'userRole', FILTER_SANITIZE_SPECIAL_CHARS);
 
-        if (!$id || !$lastName || !$firstName  || !$pseudo || !$userRole) {
+        if (!$Id_user || !$lastName || !$firstName  || !$pseudo || !$userRole) {
             $this->redirectWithError(
                 "index.php?controller=User&action=liste",
                 "Veuillez remplir tous les champs du formulaire correctement"
@@ -147,7 +147,7 @@ class User extends \controllers\Controller
 
         $manager = $this->modelManager;
         $user = new \models\User([
-            'id' => $id,
+            'Id_user' => $Id_user,
             'firstName' => $firstName,
             'lastName' => $lastName,
             'pseudo' => $pseudo,

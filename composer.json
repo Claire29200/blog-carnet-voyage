@@ -2,7 +2,7 @@
     "name": "clair/blog-master",
     "autoload": {
         "psr-4": {
-            "Clair\\BlogMaster\\": "src/"
+            "Clair\\BlogVoyage\\": "src/"
         }
     },
     "authors": [
