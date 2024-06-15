@@ -6,7 +6,7 @@
 <section class="latest-blog-area area-padding">
     <div class="container">
         <div class="section-top-border">
-            <h3 class="mb-30 title_color">Commentaires en attente</h3>
+            <h3 class="mb-30 title_color">Commentaires en attente de modération</h3>
             <div class="progress-table-wrap">
                 <div class="progress-table">
                     <div class="table-head">

@@ -6,11 +6,11 @@
 <section class="latest-blog-area area-padding">
     <div class="container">
         <div class="section-top-border">
-            <h3 class="mb-30 title_color">Liste des posts</h3>            
+            <h3 class="mb-30 title_color">Liste des articles</h3>            
             <div class="progress-table-wrap">
                 <div class="progress-table">
                     <div class="table-head">
-                        <div class="serial">id</div>
+                        <div class="serial">index</div>
                         <div class="country">Titre</div>
                         <div class="country">Statut</div>
                         <div class="visit">Modifier</div>

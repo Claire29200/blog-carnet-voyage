@@ -48,7 +48,7 @@
               </div>              
             </div>
             <div class="form-group mt-3">
-           <input type="submit" class="button button-contactForm" name="ajouter" value="Envoyer">
+           <input type="submit" class="button button-contactForm" name="ajouter" value="valider">
             </div>
           </form>
         </div>       
