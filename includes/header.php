@@ -53,7 +53,7 @@
                                 
                            
                       
-                    </div>
+                    
                     <div class="right-button">
                         <ul>
                             <?php if (!\models\Session::isConnected()) { ?>
@@ -68,6 +68,7 @@
 
                         </ul>
                     </div>
+                </div>
                 </div>
             </nav>
         </div>
