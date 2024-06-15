@@ -1,27 +1,26 @@
 <section class="hero-banner d-flex align-items-center">
         <div class="container text-center">
-            <h2>Inscription</h2>            
+            <h2>Créer votre compte</h2>            
         </div>
     </section> 
     <section class="contact-section area-padding">
     <div class="container">
               <div class="row">
-        <div class="col-12">
-          <h2 class="contact-title">Formulaire d'inscription</h2>
-        </div>
+       
         <div class="col-lg-8">
           <form class="form-contact contact_form" method="post" action="index.php?controller=User&action=addUser">
-            <div class="row">              
+            <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                  Prénom : <input class="form-control" type="text" name="firstName">
+                </div>
+              </div>              
               <div class="col-12">
                 <div class="form-group">
                   Nom : <input class="form-control" type="text" name="lastName">
                 </div>
               </div>
-              <div class="col-12">
-                <div class="form-group">
-                  Prénom : <input class="form-control" type="text" name="firstName">
-                </div>
-              </div>
+             
               <div class="col-12">
                 <div class="form-group">
                   Mail : <input class="form-control" type="mail" name="email">

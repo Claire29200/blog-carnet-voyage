@@ -33,11 +33,11 @@
                 <a href = "index.php?controller=Post&action=afficher&id=<?= $value->getId(); ?>">
                     <div class="single-blog">
                         <div class="thumb">
-                        <img class="img-fluid w-100" src="<?= $value->getImage() ?>" alt="">
+                        <img class="img-fluid w-100" src="<?= $value->getImage() ?>" alt="image_representant_article">
                         </div>
                         <div class="single-blog-content">                            
                             <p class="date">
-                            <i>Derniere mise à jour le : <?= $value->getModificationDate(); ?> </i></p>
+                            <i>Dernière mise à jour le : <?= $value->getModificationDate(); ?> </i></p>
                             <h3>
                             <?= ucfirst ($value->getTitle()); ?>
                             </h3>

@@ -11,8 +11,7 @@
       <div class="col-lg-8 posts-list">
         <div class="single-post">
           <div class="feature-img">
-          <a><img src="<?= $post->getImage() ?>"
-                    width='80%'></a>
+            <a><img src="<?= $post->getImage() ?>" width='80% '></a>
           </div>
           <div class="blog_details">
             <h2><?= $post->getTitle(); ?></h2>
@@ -24,17 +23,37 @@
             <p class="excert">
               <?= $post->getContent(); ?>
             </p>
-            <div class="d-flex align-items-center">
 
-
-
-              <p class="date">Dernirer modification le : <?= $post->getModificationDate(); ?></p>
-
-            </div>
             <p class="date">Ecrit par : <?= $post->getAuthor(); ?></p>
           </div>
-        </div>
+          <div class="d-flex align-items-center">
 
+
+
+            <p class="date">Dernière modification le : <?= $post->getModificationDate(); ?></p>
+
+          </div>
+        </div>
+        <div class="comment-form">
+          <h4>Laissez un commentaire</h4>
+          <form class="form-contact comment_form" method="post" action="index.php?controller=Comment&action=addComment" id="commentForm">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <textarea class="form-control w-100" name="content" cols="30" rows="9" placeholder="Ecrire un commentaire"></textarea>
+                </div>
+              </div>
+
+              <input class="form-control" type="hidden" name="postId" value="<?= $post->getId(); ?>">
+              <?php if (\models\Session::isConnected()) { ?>
+                <input class="form-control" type="hidden" name="token" value="<?= $_SESSION['token']; ?>">
+              <?php } ?>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="button button-contactForm">Poster le commentaire</button>
+            </div>
+          </form>
+        </div>
         <div class="comments-area">
           <h4><?= count($comments) ?> Commentaires</h4>
           <?php foreach ($comments as $values) { ?>
@@ -61,26 +80,7 @@
             </div>
           <?php } ?>
         </div>
-        <div class="comment-form">
-          <h4>Laissez un commentaire</h4>
-          <form class="form-contact comment_form" method="post" action="index.php?controller=Comment&action=addComment" id="commentForm">
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <textarea class="form-control w-100" name="content" cols="30" rows="9" placeholder="Ecrire un commentaire"></textarea>
-                </div>
-              </div>
 
-              <input class="form-control" type="hidden" name="postId" value="<?= $post->getId(); ?>">
-              <?php if (\models\Session::isConnected()) { ?>   
-              <input class="form-control" type="hidden" name="token" value="<?= $_SESSION['token']; ?>">
-               <?php } ?>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="button button-contactForm">Poster le commentaire</button>
-            </div>
-          </form>
-        </div>
       </div>
     </div>
   </div>
