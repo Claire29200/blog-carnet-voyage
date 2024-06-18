@@ -25,35 +25,27 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.php"><img src="assets/img/logo.png" alt=""></a>                   
+                    <a class="navbar-brand logo_h" href="index.php"><img src="assets/img/logo.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <!-- <script>
-                        let width = screen.width;
-                        let height = screen.height;
-                        top.document.location = "header.php?width="+width+"&height="+height;
-                    </script> -->
-                    <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
                             <li class="nav-item"><a class="nav-link" href="https://claire29200.my.canva.site/" target="_blank">Mon Portfolio</a></li>
-                            <!-- <div class="right-button"> -->
-                                
-                                <?php if (!\models\Session::isConnected()) { ?>
-                                    <li class="nav-item scrollbar"><a class="login" href="index.php?controller=User&action=formLogin">Se connecter</a></li>
-                                <?php }
-                                if (\models\Session::isConnected() ) { ?>
-                                    <li class="nav-item scrollbar"><a class="login" href="index.php?controller=User&action=logout">Déconnexion</a></li>
-                                <?php } ?>
-                                <?php if (!\models\Session::isConnected() ) { ?>
-                                    <li><a class="nav-item scrollbar" href="index.php?controller=User&action=ajouter">Créer votre compte</a></li>
-                                <?php } ?>
+                            <?php if (!\models\Session::isConnected()) { ?>
+                                <li class="nav-item scrollbar"><a class="login" href="index.php?controller=User&action=formLogin">Se connecter</a></li>
+                            <?php }
+                            if (\models\Session::isConnected()) { ?>
+                                <li class="nav-item scrollbar"><a class="login" href="index.php?controller=User&action=logout">Déconnexion</a></li>
+                            <?php } ?>
+                            <?php if (!\models\Session::isConnected()) { ?>
+                                <li><a class="nav-item scrollbar" href="index.php?controller=User&action=ajouter">Créer votre compte</a></li>
+                            <?php } ?>
                             <!-- </div> -->
-                            
+
                             <?php if (\models\Session::isAdmin()) { ?>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrateur</a>

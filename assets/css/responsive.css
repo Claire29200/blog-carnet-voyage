@@ -4,8 +4,12 @@
 	.scrollbar{
 		display: none;
 	}
+	.home_banner_area .banner_inner .banner_content p {
+		font-size: 30px;
+	}
 
 }
+
 @media (max-width:1619px){
 	/* Main Menu Area css
 	============================================================================================ */

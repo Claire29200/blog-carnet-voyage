@@ -4315,11 +4315,7 @@ input[type=submit].btn-block {
     }
 }
 
-.scrollbar {
-    @media screen {
-        
-    }
-}
+
 
 @media (max-width:767.98px) {
     .navbar-expand-md>.container,

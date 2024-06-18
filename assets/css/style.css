@@ -149,9 +149,9 @@ ul {
         padding: 0px;
         display: inline-block;
         font-size: 14px; }
-        .header_area .navbar .nav .nav-item .nav-link:after {
+        .header_area .navbar .nav .nav-item .nav-link:after  {
           display: none; }
-      .header_area .navbar .nav .nav-item:hover .nav-link, .header_area .navbar .nav .nav-item.active .nav-link {
+      .header_area .navbar .nav .nav-item:hover .nav-link, .header_area .navbar .nav .nav-item.active .nav-link  {
         color: #f84b67; }
       .header_area .navbar .nav .nav-item.submenu {
         position: relative; }

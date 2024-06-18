@@ -11,7 +11,7 @@
       <div class="col-lg-8 posts-list">
         <div class="single-post">
           <div class="feature-img">
-            <a><img src="<?= $post->getImage() ?>" width='80% '></a>
+            <a><img src="<?= $post->getImage() ?>" width='60% '></a>
           </div>
           <div class="blog_details">
             <h2><?= $post->getTitle(); ?></h2>
