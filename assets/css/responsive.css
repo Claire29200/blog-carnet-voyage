@@ -1,3 +1,11 @@
+@media (min-width:1500px){
+/* boutons connexion et créer un compte affichés dans la scrollbar mais pas dans l'entête pour desktop
+	============================================================================================ */
+	.scrollbar{
+		display: none;
+	}
+
+}
 @media (max-width:1619px){
 	/* Main Menu Area css
 	============================================================================================ */
@@ -9,6 +17,7 @@
 	.testimonials_area .owl-prev, .testimonials_area .owl-next {
 		right: 15px;
 	}
+	
 }
 @media (max-width:1300px){
 	.testimonials_area .owl-prev, .testimonials_area .owl-next {
