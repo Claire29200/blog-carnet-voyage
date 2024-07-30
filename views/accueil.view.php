@@ -30,7 +30,7 @@
             foreach ($posts as $value) {
             ?>
                 <div class="col-lg-4 col-md-6 ">
-                    <a href="index.php?controller=Post&action=afficher&id=<?= $value->getIdPost(); ?>">
+                    <a href="index.php?controller=Post&action=afficher&id=<?= $value->getId(); ?>">
                         <div class="single-blog">
                             <div class="thumb">
                                 <img class="img-fluid w-100" src="<?= $value->getImage() ?>" alt="">
@@ -40,7 +40,7 @@
                                 <h3>
                                     <?= ucfirst($value->getTitle()); ?>
                                 </h3>
-                                <h2>Catégorie:  <?= ucfirst($value->getNom()); ?></h2>
+                                
                                 <p class="date"> <?= ucfirst($value->getSlug()); ?></p>
                     </a>
                     <p class="date">

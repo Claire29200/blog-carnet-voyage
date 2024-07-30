@@ -58,7 +58,7 @@ class PostManager extends \models\Database
   {
     $id = (int) $id;
     $query = $this->db->prepare('SELECT id, title, image, slug, content, author, date_format(creationDate"%d/%m/%Y") AS creationDate 
-                                    date_format(modifiionDate"%d/%m/%Y") AS modifiionDate,Id_user, categoryId  FROM post WHERE id = ' . $id);
+                                    date_format(modificationDate"%d/%m/%Y") AS modificationDate,Id_user, categoryId  FROM post WHERE id = ' . $id);
     $query->execute();
     if ($query->rowCount() != 1) {
       return false;
@@ -99,7 +99,7 @@ class PostManager extends \models\Database
   {
 
     $query = $this->db->prepare('SELECT id, title, image, slug, content, author, date_format(creationDate,"%d/%m/%Y") AS creationDate,
-                                     date_format(modificationDate,"%d/%m/%Y") AS modificationDate, userId , categoryId FROM post  ');
+                                     date_format(modificationDate,"%d/%m/%Y") AS modificationDate, userId , categoryId FROM post');
     $query->execute();
     $query->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\models\Post');
 

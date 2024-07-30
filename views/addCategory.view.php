@@ -9,11 +9,16 @@
             <div class="col-lg-8">
                 <form class="form-contact contact_form" method="post" action="index.php?controller=Category&action=addCategory">
                     <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                Nom : <input class="form-control" type="text" name="nom">
-                            </div>
-                        </div>
+                    <div class="col-12">
+              <div class="form-group">
+                Catégorie : <select class="form-control" name="nom">
+                  <option value="En attente" <?php if ($post->getNom() == "En attente") {
+                                                echo "selected";
+                                              } ?>>En attente</option>
+                  
+                </select>
+              </div>
+            </div>
 
                     </div>
                     <div class="form-group mt-3">
