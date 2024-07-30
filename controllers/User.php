@@ -208,7 +208,7 @@ class User extends \controllers\Controller
         if (!$verif) {
             $this->redirectWithError(
                 "index.php?controller=User&action=formLogin",
-                "Le mot de passe ne correspond au compte utilisateur trouvé"
+                "Association mot de passe et utilisateur erronée"
             );
         } else {
 

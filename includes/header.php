@@ -42,26 +42,27 @@
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="index.php?controller=Post&action=ajouter">Ajouter un article </a></li>
                                         <li class="nav-item"><a class="nav-link" href="index.php?controller=Post&action=liste">Liste des articles</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="index.php?controller=Post&action=liste">Catégories</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="index.php?controller=Post&action=liste">Ajouter une catégorie</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="index.php?controller=Category&action=liste">Catégories</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="index.php?controller=Category&action=liste">Ajouter catégorie</a></li>
                                         <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=liste">Liste utilisateurs</a></li>
                                         <li class="nav-item"><a class="nav-link" href="index.php?controller=Comment&action=liste">Commentaires</a></li>
                                     </ul>
                                 </li>
                             <?php } ?>
-                            <?php if (!\models\Session::isConnected()) { ?>
-                                <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=formLogin">Se connecter</a></li>
-                            <?php }
-                            if (\models\Session::isConnected()) { ?>
-                                <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=logout">Déconnexion</a></li>
-                            <?php } ?>
+                            
 
                         </ul>
                     </div>
                     <div class="right-button">
                         <ul>
-                            <li><a class="sign_in" href="index.php?controller=User&action=formlogin">Se connecter</a></li>
-                            <li><a class="sign_up" href="index.php?controller=User&action=ajouter">Créer un compte</a></li>
+                            <?php if (!\models\Session::disconnect()) { ?>
+                                <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=formLogin">Se connecter</a></li>
+                                <li><a class="sign_up" href="index.php?controller=User&action=ajouter">Créer un compte</a></li>
+                            <?php }
+                            if (\models\Session::isConnected()) { ?>
+                                <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=logout">Déconnexion</a></li>
+                            <?php } ?>
+                            
 
                         </ul>
                     </div>
