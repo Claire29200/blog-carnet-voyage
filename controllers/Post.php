@@ -59,9 +59,9 @@ class Post extends \controllers\Controller
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
         $author =  filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
         $creationDate = date('Y-m-d');
-        $published = "En attente";
+    
         $userId = $_SESSION['user']['id'];
-        //$Id_categorie = [filter_input(INPUT_POST, 'categorie', FILTER_SANITIZE_SPECIAL_CHARS)];
+        $categoryId = [filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS)];
 
          if (!$title || !$image || !$slug || !$content || !$author ) {
             $this->redirectWithError(
@@ -85,9 +85,9 @@ class Post extends \controllers\Controller
             'slug' => $slug,
             'content' => $content,
             'author' => $author,
-            'creationDate' => $creationDate,
-            'published' => $published,
-            'userId' => $userId
+            'creationDate' => $creationDate,            
+            'userId' => $userId,
+            'categoryId' => $categoryId
             
 
         ]);
@@ -154,10 +154,11 @@ class Post extends \controllers\Controller
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
         $author =  filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
         $modificationDate= date('y-m-d');
-        $published = filter_input(INPUT_POST, 'published', FILTER_SANITIZE_SPECIAL_CHARS);
+       
         $userId = filter_input(INPUT_POST, 'userId', FILTER_VALIDATE_INT);
+        $categoryId= filter_input(INPUT_POST, 'categoryId', FILTER_SANITIZE_SPECIAL_CHARS);
 
-        if (!$id || !$image || !$title || !$slug || !$content || !$author || !$modificationDate || !$published || !$userId)  {
+        if (!$id || !$image || !$title || !$slug || !$content || !$author || !$modificationDate || !$userId || !$categoryId)  {
             $this->redirectWithError(
                 "index.php?Post&action=liste",
                 "Veuillez remplir tous les champs du formulaire correctement"
@@ -181,8 +182,8 @@ class Post extends \controllers\Controller
             'content' => $content,
             'author' => $author,
             'modificationDate' => $modificationDate,
-            'published' => $published,
-            'userId' => $userId
+            'userId' => $userId,
+            'categoryId' => $categoryId
         ]);
 
         $manager->update($post);

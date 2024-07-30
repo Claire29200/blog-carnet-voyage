@@ -31,21 +31,21 @@ class PostManager extends \models\Database
   public function add(\models\Post $post)
   {
     $query = $this->db->prepare('INSERT INTO post(title, image, slug, content, author, creationDate published, Id_user)
-    VALUES(:title, :image, :slug, :content, :author, :creationDate :published, :userId)');
+    VALUES(:title, :image, :slug, :content, :author, :creationDate, :userId, :categoryId)');
     $query->bindValue(':title', $post->getTitle());
     $query->bindValue(':image', $post->getImage());
     $query->bindValue(':slug', $post->getSlug());
     $query->bindValue(':content', $post->getContent());
     $query->bindValue(':author', $post->getAuthor());
     $query->bindValue(':creationDate', $post->getCreationDate());
-    $query->bindValue(':published', $post->getPublished());
     $query->bindValue(':userId', $post->getUserId());
+    $query->bindValue(':categoryId' , $post->getCategoryId());
     $query->execute();
   }
 
-  public function delete($Id_post)
+  public function delete($id)
   {
-    $query = $this->db->prepare('DELETE FROM post WHERE id = ' . $Id_post);
+    $query = $this->db->prepare('DELETE FROM post WHERE id = ' . $id);
     $query->execute();
     if ($query->rowCount() != 1) {
       return false;
@@ -58,7 +58,7 @@ class PostManager extends \models\Database
   {
     $id = (int) $id;
     $query = $this->db->prepare('SELECT id, title, image, slug, content, author, date_format(creationDate"%d/%m/%Y") AS creationDate 
-                                    date_format(modifiionDate"%d/%m/%Y") AS modifiionDate published,Id_user FROM post WHERE id = ' . $id);
+                                    date_format(modifiionDate"%d/%m/%Y") AS modifiionDate,Id_user, categoryId  FROM post WHERE id = ' . $id);
     $query->execute();
     if ($query->rowCount() != 1) {
       return false;
@@ -85,7 +85,7 @@ class PostManager extends \models\Database
 
 
     $query = $this->db->prepare('SELECT id, title, image, slug, content, date_format(creationDate,"%d/%m/%Y") AS creationDate,
-                                   date_format(modificationDate,"%d/%m/%Y") AS modificationDate, published, userId FROM post');
+                                   date_format(modificationDate,"%d/%m/%Y") AS modificationDate, userId , categoryId FROM post');
     $query->execute();
     $query->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\models\Post');
 
@@ -99,7 +99,7 @@ class PostManager extends \models\Database
   {
 
     $query = $this->db->prepare('SELECT id, title, image, slug, content, author, date_format(creationDate,"%d/%m/%Y") AS creationDate,
-                                     date_format(modificationDate,"%d/%m/%Y") AS modificationDate, published, userId FROM post WHERE published = "Publié" ORDER BY id DESC');
+                                     date_format(modificationDate,"%d/%m/%Y") AS modificationDate, userId , categoryId FROM post  ');
     $query->execute();
     $query->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\models\Post');
 
@@ -111,15 +111,15 @@ class PostManager extends \models\Database
   public function update(\models\Post $post)
   {
     $query = $this->db->prepare('UPDATE post SET title = :title, image = :image, slug = :slug, content = :content, author = :author,  
-                                                 modificationDate = :modificationDate, published = :published, userId = :userId  WHERE id = :id');
+                                                 modificationDate = :modificationDate,  userId = :userId,  categoryId = :categoryId  WHERE id = :id');
     $query->bindValue(':title', $post->getTitle());
     $query->bindValue(':image', $post->getImage());
     $query->bindValue(':slug', $post->getSlug());
     $query->bindValue(':content', $post->getContent());
     $query->bindValue(':author', $post->getAuthor());
-    $query->bindValue(':modificationDate', $post->getModificationDate());
-    $query->bindValue(':published', $post->getPublished());
+    $query->bindValue(':modificationDate', $post->getModificationDate());    
     $query->bindValue(':userId', $post->getUserId());
+    $query->bindValue(':categoryId', $post->getCategoryId());
     $query->bindValue(':id', $post->getId());
     $query->execute();
   }

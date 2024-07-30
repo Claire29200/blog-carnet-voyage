@@ -12,8 +12,8 @@ class Post extends Model
     protected $author;
     protected $creationDate;
     protected $modificationDate;
-    protected $published;
     protected $userId;
+    protected $categoryId;
 
 
     //GETTERS    
@@ -53,16 +53,16 @@ class Post extends Model
         return $this->modificationDate;
     }
 
-    function getPublished()
-    {
-        return $this->published;
-    }
+   
 
     function getUserId()
     {
         return $this->userId;
     }
-
+    function getCategoryId()
+    {
+        return $this->categoryId;
+    }
     //SETTERS
 
     function setId($id)
@@ -104,13 +104,14 @@ class Post extends Model
         $this->modificationDate = $modificationDate;
     }
 
-    function setPublished($published)
-    {
-        $this->published = $published;
-    }
+    
 
     function setUserId($userId)
     {
         $this->userId = $userId;
+    }
+    function setCategoryId($categoryId)
+    {
+        $this->categoryId = $categoryId;
     }
 }
