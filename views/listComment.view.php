@@ -1,12 +1,11 @@
 <section class="hero-banner d-flex align-items-center">
     <div class="container text-center">
-        <h2>Commentaires</h2>
+        <h2>Modération des commentaires</h2>
     </div>
 </section>
 <section class="latest-blog-area area-padding">
     <div class="container">
         <div class="section-top-border">
-            <h3 class="mb-30 title_color">Commentaires en attente</h3>
             <div class="progress-table-wrap">
                 <div class="progress-table">
                     <div class="table-head">

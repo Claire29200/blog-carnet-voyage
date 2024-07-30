@@ -6,7 +6,6 @@
 <section class="latest-blog-area area-padding">
     <div class="container">
         <div class="section-top-border">
-            <h3 class="mb-30 title_color">Liste des utilisateurs</h3>
             <div class="progress-table-wrap">
                 <div class="progress-table">
                     <div class="table-head">
