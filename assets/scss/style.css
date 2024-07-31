@@ -432,6 +432,7 @@ ul {
 }
 .home_banner_area .banner_inner .overlay {
   background: url(../img/banner/home-banner.jpg) no-repeat scroll center center;
+  background-size: cover;
   position: absolute;
   left: 0;
   right: 0;
@@ -473,6 +474,7 @@ ul {
 }
 .blog_banner .banner_inner .overlay {
   background: url(../img/banner/banner-2.jpg) no-repeat scroll center center;
+  background-size: cover;
   opacity: 0.5;
   height: 125%;
   position: absolute;
@@ -523,6 +525,7 @@ ul {
 .banner_area .banner_inner .overlay {
   background: url(../img/banner/banner.jpg) no-repeat scroll center center;
   position: absolute;
+  background-size: cover;
   left: 0;
   right: 0;
   top: 0;
@@ -3693,7 +3696,7 @@ h6 {
 @media (max-width: 1199px) {
   .about-area:after {
     right: -44px;
-    background-size: contain;
+    background-size: cover;
   }
 }
 .about-area .single-about {
