@@ -53,8 +53,6 @@ class Post extends Model
         return $this->modificationDate;
     }
 
-   
-
     function getUserId()
     {
         return $this->userId;
@@ -103,8 +101,6 @@ class Post extends Model
     {
         $this->modificationDate = $modificationDate;
     }
-
-    
 
     function setUserId($userId)
     {

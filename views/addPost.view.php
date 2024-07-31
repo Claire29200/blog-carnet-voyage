@@ -16,7 +16,16 @@
             </div>
             <div class="col-12">
               <div class="form-group">
-                Catégorie : <input class="form-control" type="text" name="nom">
+                Catégorie :
+                <select class="form-control" name="categoryId">
+                  <?php
+                  foreach ($categories as $value) {
+                  ?>
+                    <option value="<?= $value->getId(); ?>">
+                      <?= $value->getNom(); ?>
+                    </option>
+                  <?php } ?>
+                </select>
               </div>
             </div>
             <div class="col-12">
@@ -26,7 +35,7 @@
             </div>
             <div class="col-12">
               <div class="form-group">
-               Slug : <input class="form-control" type="text" name="slug">
+                Slug : <input class="form-control" type="text" name="slug">
               </div>
             </div>
             <div class="col-12">

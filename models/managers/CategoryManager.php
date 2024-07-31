@@ -57,6 +57,15 @@ class CategoryManager extends \models\Database
     return implode($data);
   }
 
+  public function getIdByNom($nom)
+  {
+    $query = $this->db->prepare('SELECT id FROM category WHERE nom = :nom');
+    $query->execute([':nom' => $nom]);
+    $data = $query->fetch(\PDO::FETCH_ASSOC);
+    //Permet d'obtenir le resultat en chaine de caratère et non en tableau 
+    return $data;
+  }
+
   public function getList()
   {
 
@@ -77,6 +86,4 @@ class CategoryManager extends \models\Database
     $query->bindValue(':categoryId', $category->getId());
     $query->execute();
   }
-
-
 }

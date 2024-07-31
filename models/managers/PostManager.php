@@ -30,8 +30,8 @@ class PostManager extends \models\Database
 
   public function add(\models\Post $post)
   {
-    $query = $this->db->prepare('INSERT INTO post(title, image, slug, content, author, creationDate published, Id_user)
-    VALUES(:title, :image, :slug, :content, :author, :creationDate, :userId, :categoryId)');
+    $query = $this->db->prepare('INSERT INTO post(title, image, slug, content, author, creationDate, userId, id)
+    VALUES(:title, :image, :slug, :content, :author, :creationDate, :userId, :id)');
     $query->bindValue(':title', $post->getTitle());
     $query->bindValue(':image', $post->getImage());
     $query->bindValue(':slug', $post->getSlug());
@@ -39,7 +39,7 @@ class PostManager extends \models\Database
     $query->bindValue(':author', $post->getAuthor());
     $query->bindValue(':creationDate', $post->getCreationDate());
     $query->bindValue(':userId', $post->getUserId());
-    $query->bindValue(':categoryId' , $post->getCategoryId());
+    $query->bindValue(':id', $post->getCategoryId());
     $query->execute();
   }
 
@@ -57,8 +57,8 @@ class PostManager extends \models\Database
   public function get($id)
   {
     $id = (int) $id;
-    $query = $this->db->prepare('SELECT id, title, image, slug, content, author, date_format(creationDate"%d/%m/%Y") AS creationDate 
-                                    date_format(modificationDate"%d/%m/%Y") AS modificationDate,Id_user, categoryId  FROM post WHERE id = ' . $id);
+    $query = $this->db->prepare('SELECT id, image, title, slug, content, author, date_format(creationDate,"%d/%m/%Y") AS creationDate, 
+                                    date_format(modificationDate,"%d/%m/%Y") AS modificationDate, userId, categoryId FROM post WHERE id = ' . $id);
     $query->execute();
     if ($query->rowCount() != 1) {
       return false;
@@ -69,13 +69,14 @@ class PostManager extends \models\Database
     }
   }
 
-  public function getPostTitle($id){
+  public function getPostTitle($postid)
+  {
 
-    $query = $this->db->prepare('SELECT title FROM post WHERE id = ' . $id);
+    $query = $this->db->prepare('SELECT title FROM post WHERE id = ' . $postid);
     $query->execute();
 
     $data = $query->fetch(\PDO::FETCH_ASSOC);
-    
+
     //Permet d'obtenir le resultat en chaine de caratère et non en tableau 
     return implode($data);
   }
@@ -99,7 +100,7 @@ class PostManager extends \models\Database
   {
 
     $query = $this->db->prepare('SELECT id, title, image, slug, content, author, date_format(creationDate,"%d/%m/%Y") AS creationDate,
-                                     date_format(modificationDate,"%d/%m/%Y") AS modificationDate, userId , categoryId FROM post');
+                                     date_format(modificationDate,"%d/%m/%Y") AS modificationDate, userId , categoryId FROM post ORDER BY id DESC');
     $query->execute();
     $query->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\models\Post');
 
@@ -117,7 +118,7 @@ class PostManager extends \models\Database
     $query->bindValue(':slug', $post->getSlug());
     $query->bindValue(':content', $post->getContent());
     $query->bindValue(':author', $post->getAuthor());
-    $query->bindValue(':modificationDate', $post->getModificationDate());    
+    $query->bindValue(':modificationDate', $post->getModificationDate());
     $query->bindValue(':userId', $post->getUserId());
     $query->bindValue(':categoryId', $post->getCategoryId());
     $query->bindValue(':id', $post->getId());

@@ -34,7 +34,7 @@ class Post extends \controllers\Controller
             $this->redirectWithError("index.php", "Vous essayez d'afficher un article qui n'existe pas");
         }
 
-        
+
         $postId = $id;
 
         $commentsModel = new \models\managers\CommentManager();
@@ -59,11 +59,11 @@ class Post extends \controllers\Controller
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
         $author =  filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
         $creationDate = date('Y-m-d');
-    
-        $userId = $_SESSION['user']['id'];
-        $categoryId = [filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS)];
 
-         if (!$title || !$image || !$slug || !$content || !$author ) {
+        $userId = $_SESSION['user']['id'];
+        $categoryId = [filter_input(INPUT_POST, 'categoryId', FILTER_SANITIZE_SPECIAL_CHARS)];
+
+        if (!$title || !$image || !$slug || !$content || !$author) {
             $this->redirectWithError(
                 "index.php?controller=Post&action=ajouter",
                 "Veuillez remplir tous les champs du formulaire correctement"
@@ -85,10 +85,10 @@ class Post extends \controllers\Controller
             'slug' => $slug,
             'content' => $content,
             'author' => $author,
-            'creationDate' => $creationDate,            
+            'creationDate' => $creationDate,
             'userId' => $userId,
             'categoryId' => $categoryId
-            
+
 
         ]);
 
@@ -135,7 +135,10 @@ class Post extends \controllers\Controller
                 "Vous devez être administrateur pour ajouter un article"
             );
         }
-        \models\Renderer::render("addPost");
+        $categoryManager = new \models\managers\CategoryManager();
+        $categories = $categoryManager->getList();
+
+        \models\Renderer::render("addPost", compact('categories'));
     }
 
     function modifierPost()
@@ -153,12 +156,12 @@ class Post extends \controllers\Controller
         $slug = filter_input(INPUT_POST, 'slug', FILTER_SANITIZE_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
         $author =  filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
-        $modificationDate= date('y-m-d');
-       
-        $userId = filter_input(INPUT_POST, 'userId', FILTER_VALIDATE_INT);
-        $categoryId= filter_input(INPUT_POST, 'categoryId', FILTER_SANITIZE_SPECIAL_CHARS);
+        $modificationDate = date('y-m-d');
 
-        if (!$id || !$image || !$title || !$slug || !$content || !$author || !$modificationDate || !$userId || !$categoryId)  {
+        $userId = filter_input(INPUT_POST, 'userId', FILTER_VALIDATE_INT);
+        $categoryId = filter_input(INPUT_POST, 'categoryId', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        if (!$id || !$image || !$title || !$slug || !$content || !$author || !$modificationDate || !$userId || !$categoryId) {
             $this->redirectWithError(
                 "index.php?Post&action=liste",
                 "Veuillez remplir tous les champs du formulaire correctement"
@@ -223,7 +226,7 @@ class Post extends \controllers\Controller
                 "Vous devez préciser un id !"
             );
         }
-        
+
         $token = filter_input(INPUT_GET, 'token', FILTER_SANITIZE_SPECIAL_CHARS);
 
         if (!$token || $token != $_SESSION['token']) {
@@ -232,7 +235,7 @@ class Post extends \controllers\Controller
                 "Vous devez avoir un jeton valide  pour supprimer un article"
             );
         }
-       
+
         $post = $manager->delete($id);
         if (!$post) {
             $this->redirectWithError(

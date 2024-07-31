@@ -14,9 +14,9 @@ class Category extends \controllers\Controller
 
 
         $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_SPECIAL_CHARS);
-       
 
-        if (!$nom ) {
+
+        if (!$nom) {
             $this->redirectWithError(
                 "index.php?controller=Category&action=ajouter",
                 "Veuillez remplir tous les champs du formulaire "
@@ -24,16 +24,28 @@ class Category extends \controllers\Controller
         }
 
         $manager =  $this->modelManager;
-        $user = $manager->getByPseudo($nom);
+        $category = $manager->getIdByNom($nom);
 
         // Si une categorie existe avec ce nom, alors on affiche une erreur
-        if ($user) {
+        if ($category) {
             $this->redirectWithError(
                 "index.php?controller=Category&action=ajouter",
                 "Cette catégorie existe déjà"
             );
         }
 
+        $newCategory = new \models\Category([
+            'nom' => $nom
+        ]);
+
+        $manager->add($newCategory);
+
+        if ($newCategory) {
+            $this->redirectWithSuccess(
+                "index.php?controller=Category&action=liste",
+                "Catégorie ajoutée avec succès"
+            );
+        }
     }
 
     function modifier()
@@ -81,11 +93,11 @@ class Category extends \controllers\Controller
         }
 
 
-        $id= filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
         $nom = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
-      
 
-        if (!$id || !$nom ) {
+
+        if (!$id || !$nom) {
             $this->redirectWithError(
                 "index.php?controller=Category&action=liste",
                 "Veuillez remplir tous les champs du formulaire correctement"
@@ -103,8 +115,8 @@ class Category extends \controllers\Controller
         $manager = $this->modelManager;
         $category = new \models\Category([
             'id' => $id,
-            'nom' =>$nom
-           
+            'nom' => $nom
+
         ]);
 
         $manager->update($category);
@@ -124,8 +136,8 @@ class Category extends \controllers\Controller
             );
         }
         $manager = $this->modelManager;
-        $users = $manager->getList();
+        $categories = $manager->getList();
+
         \models\Renderer::render("listCategory", compact('categories'));
     }
-
 }

@@ -43,26 +43,26 @@
                                         <li class="nav-item"><a class="nav-link" href="index.php?controller=Post&action=ajouter">Ajouter un article </a></li>
                                         <li class="nav-item"><a class="nav-link" href="index.php?controller=Post&action=liste">Liste des articles</a></li>
                                         <li class="nav-item"><a class="nav-link" href="index.php?controller=Category&action=liste">Catégories</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="index.php?controller=Category&action=liste">Ajouter catégorie</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="index.php?controller=Category&action=ajouter">Ajouter catégorie</a></li>
                                         <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=liste">Liste utilisateurs</a></li>
                                         <li class="nav-item"><a class="nav-link" href="index.php?controller=Comment&action=liste">Commentaires</a></li>
                                     </ul>
                                 </li>
                             <?php } ?>
-                            
+
 
                         </ul>
                     </div>
                     <div class="right-button">
                         <ul>
-                            <?php if (!\models\Session::disconnect()) { ?>
+                            <?php if (!\models\Session::isConnected()) { ?>
                                 <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=formLogin">Se connecter</a></li>
-                                <li><a class="sign_up" href="index.php?controller=User&action=ajouter">Créer un compte</a></li>
                             <?php }
                             if (\models\Session::isConnected()) { ?>
                                 <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=logout">Déconnexion</a></li>
                             <?php } ?>
-                            
+
+
 
                         </ul>
                     </div>

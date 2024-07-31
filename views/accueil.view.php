@@ -20,8 +20,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="area-heading">
-                    <h4>Derniers Articles</h4>
-                    <p>Retrouvez les derniers articles de mon blog ! </p>
+                    <h4>Les articles de mon blog</h4>
                 </div>
             </div>
         </div>
@@ -33,7 +32,7 @@
                     <a href="index.php?controller=Post&action=afficher&id=<?= $value->getId(); ?>">
                         <div class="single-blog">
                             <div class="thumb">
-                                <img class="img-fluid w-100" src="<?= $value->getImage() ?>" alt="">
+                                <img class="img-fluid w-100" src="<?= $value->getImage() ?>" alt="image_article">
                             </div>
                             <div class="single-blog-content">
 

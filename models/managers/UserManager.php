@@ -39,10 +39,10 @@ class UserManager extends \models\Database
     $query->execute();
   }
 
-  public function get($userId)
+  public function get($id)
   {
-    $userId = (int) $userId;
-    $query = $this->db->prepare('SELECT id, lastName, firstName,  pseudo, email, pswd, userRole FROM user WHERE id = ' . $userId);
+    $id = (int) $id;
+    $query = $this->db->prepare('SELECT id, lastName, firstName,  pseudo, email, pswd, userRole FROM user WHERE id = ' . $id);
     $query->execute();
     if ($query->rowCount() != 1) {
       return false;
@@ -52,10 +52,10 @@ class UserManager extends \models\Database
     }
   }
 
-  public function getPseudo($userId)
+  public function getPseudo($id)
   {
-    $userId = (int) $userId;
-    $query = $this->db->prepare('SELECT pseudo FROM user WHERE id = ' . $userId);
+    $id = (int) $id;
+    $query = $this->db->prepare('SELECT pseudo FROM user WHERE id = ' . $id);
     $query->execute();
     $data = $query->fetch(\PDO::FETCH_ASSOC);
     //Permet d'obtenir le resultat en chaine de caratère et non en tableau 
@@ -78,12 +78,12 @@ class UserManager extends \models\Database
   public function update(\models\User $user)
   {
     $query = $this->db->prepare('UPDATE user SET lastName = :lastName, firstName = :firstName,   pseudo = :pseudo,
-                                               userRole = :userRole WHERE userId = :userId');
+                                               userRole = :userRole WHERE id = :id');
     $query->bindValue(':lastName', $user->getLastName());
     $query->bindValue(':firstName', $user->getFirstName());
     $query->bindValue(':pseudo', $user->getPseudo());
     $query->bindValue(':userRole', $user->getUserRole());
-    $query->bindValue(':userId', $user->getId());
+    $query->bindValue(':id', $user->getId());
     $query->execute();
   }
 
