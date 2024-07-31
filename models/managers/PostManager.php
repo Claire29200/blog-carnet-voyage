@@ -2,8 +2,6 @@
 
 namespace models\managers;
 
-
-
 class PostManager extends \models\Database
 {
 

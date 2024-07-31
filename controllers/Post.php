@@ -59,7 +59,6 @@ class Post extends \controllers\Controller
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
         $author =  filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
         $creationDate = date('Y-m-d');
-
         $userId = $_SESSION['user']['id'];
         $categoryId = filter_input(INPUT_POST, 'categoryId', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!$title || !$image || !$slug || !$content || !$author) {
@@ -156,7 +155,6 @@ class Post extends \controllers\Controller
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
         $author =  filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
         $modificationDate = date('y-m-d');
-
         $userId = filter_input(INPUT_POST, 'userId', FILTER_VALIDATE_INT);
         $categoryId = filter_input(INPUT_POST, 'categoryId', FILTER_SANITIZE_SPECIAL_CHARS);
 

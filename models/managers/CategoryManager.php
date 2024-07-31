@@ -26,6 +26,18 @@ class CategoryManager extends \models\Database
     return $count;
   }
 
+
+  public function delete($id)
+  {
+    $query = $this->db->prepare('DELETE FROM category WHERE id = ' . $id);
+    $query->execute();
+    if ($query->rowCount() != 1) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   public function add(\models\Category $category)
   {
     $query = $this->db->prepare('INSERT INTO category(nom)

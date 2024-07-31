@@ -21,7 +21,7 @@
                             <div class="serial"><?= $value->getId(); ?></div>
                             <div class="country"><?= $value->getTitle(); ?></div>
                             <div class="visit"><a href="index.php?controller=Post&action=modifier&id=<?= $value->getId(); ?>">Modifier</a></div>
-                            <div class="percentage"><a href="index.php?controller=Post&action=supprimer&id=<?= $value->getId(); ?>&token=<?= $_SESSION['token']; ?>"  onclick="return(confirm('Etes-vous sûr de vouloir supprimer cet article'));">Supprimer</a></div>
+                            <div class="percentage"><a href="index.php?controller=Post&action=supprimer&id=<?= $value->getId(); ?>&token=<?= $_SESSION['token']; ?>"  onclick="return(confirm('Etes-vous sûr de vouloir supprimer cet article?'));">Supprimer</a></div>
                         </div>
                     <?php } ?>
                 </div>

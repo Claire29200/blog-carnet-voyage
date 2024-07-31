@@ -140,4 +140,43 @@ class Category extends \controllers\Controller
 
         \models\Renderer::render("listCategory", compact('categories'));
     }
+    
+    function supprimer()
+    {
+        if (!\models\Session::isAdmin()) {
+            $this->redirectWithError(
+                "index.php",
+                "Vous devez être administrateur pour supprimer une catégorie"
+            );
+        }
+        $manager = $this->modelManager;
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        if (!$id) {
+            $this->redirectWithError(
+                "index.php?controller=Category&action=liste",
+                "Vous devez préciser un id !"
+            );
+        }
+
+        $token = filter_input(INPUT_GET, 'token', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        if (!$token || $token != $_SESSION['token']) {
+            $this->redirectWithError(
+                "index.php",
+                "Vous devez avoir un jeton valide  pour supprimer une catégorie"
+            );
+        }
+
+        $post = $manager->delete($id);
+        if (!$post) {
+            $this->redirectWithError(
+                "index.php?controller=Category&action=liste",
+                "Vous essayez de supprimer une catégorie qui n'existe pas"
+            );
+        }
+        $this->redirectWithSuccess(
+            "index.php?controller=Category&action=liste",
+            "Catégorie supprimée avec succès"
+        );
+    }
 }
