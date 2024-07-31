@@ -30,8 +30,8 @@ class PostManager extends \models\Database
 
   public function add(\models\Post $post)
   {
-    $query = $this->db->prepare('INSERT INTO post(title, image, slug, content, author, creationDate, userId, id)
-    VALUES(:title, :image, :slug, :content, :author, :creationDate, :userId, :id)');
+    $query = $this->db->prepare('INSERT INTO post(title, image, slug, content, author, creationDate, userId, categoryId)
+    VALUES(:title, :image, :slug, :content, :author, :creationDate, :userId, :categoryId)');
     $query->bindValue(':title', $post->getTitle());
     $query->bindValue(':image', $post->getImage());
     $query->bindValue(':slug', $post->getSlug());
@@ -39,7 +39,7 @@ class PostManager extends \models\Database
     $query->bindValue(':author', $post->getAuthor());
     $query->bindValue(':creationDate', $post->getCreationDate());
     $query->bindValue(':userId', $post->getUserId());
-    $query->bindValue(':id', $post->getCategoryId());
+    $query->bindValue(':categoryId', $post->getCategoryId());
     $query->execute();
   }
 

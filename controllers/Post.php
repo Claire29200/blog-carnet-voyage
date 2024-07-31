@@ -61,8 +61,7 @@ class Post extends \controllers\Controller
         $creationDate = date('Y-m-d');
 
         $userId = $_SESSION['user']['id'];
-        $categoryId = [filter_input(INPUT_POST, 'categoryId', FILTER_SANITIZE_SPECIAL_CHARS)];
-
+        $categoryId = filter_input(INPUT_POST, 'categoryId', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!$title || !$image || !$slug || !$content || !$author) {
             $this->redirectWithError(
                 "index.php?controller=Post&action=ajouter",

@@ -63,7 +63,7 @@ class CategoryManager extends \models\Database
     $query->execute([':nom' => $nom]);
     $data = $query->fetch(\PDO::FETCH_ASSOC);
     //Permet d'obtenir le resultat en chaine de caratère et non en tableau 
-    return $data;
+    return implode($data);
   }
 
   public function getList()
