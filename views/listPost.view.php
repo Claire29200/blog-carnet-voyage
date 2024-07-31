@@ -17,7 +17,7 @@
                     <?php
                     foreach ($posts as $value) {
                     ?>
-                        <div class="table-row">                            
+                        <div class="table-row">                        
                             <div class="serial"><?= $value->getId(); ?></div>
                             <div class="country"><?= $value->getTitle(); ?></div>
                             <div class="visit"><a href="index.php?controller=Post&action=modifier&id=<?= $value->getId(); ?>">Modifier</a></div>

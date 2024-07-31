@@ -21,6 +21,19 @@
             </div>
             <div class="col-12">
               <div class="form-group">
+                Catégorie :
+                <select class="form-control" name="categoryId">
+                  <?php
+                  foreach ($categories as $value) {
+                  ?>
+                    <option value="<?= $value->getId(); ?>">
+                      <?= $value->getNom(); ?>
+                    </option>
+                  <?php } ?>
+                </select>
+              </div>
+            <div class="col-12">
+              <div class="form-group">
                 Image : <input class="form-control" type="text" name="image" value="<?= $post->getImage(); ?>">
               </div>
             </div>

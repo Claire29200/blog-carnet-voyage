@@ -66,6 +66,11 @@
 
                         </ul>
                     </div>
+                    <div class="right-button">
+                        <ul>                            
+                            <li><a class="sign_up" href="index.php?controller=User&action=ajouter">Créer un compte</a></li>
+                        </ul>
+                    </div> 
                 </div>
             </nav>
         </div>

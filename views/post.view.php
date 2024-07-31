@@ -16,7 +16,7 @@
           </div>
           <div class="blog_details">
             <h2><?= $post->getTitle(); ?></h2>
-            <h4><?= $post->getCategoryId(); ?></h4>
+            <h4><?= $value->getNom(); ?></h4>
             <p class="date"></p>
             <p class="excert">
               <?= $post->getSlug(); ?>

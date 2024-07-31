@@ -10,18 +10,18 @@
                 <div class="progress-table">
                     <div class="table-head">
                         <div class="serial">id</div>
-                        <div class="country">Nom</div>
-                        <div class="visit">Modifier</div>
-                        <div class="percentage">Supprimer</div>
+                        <div class="serial">Nom</div>
+                        <div class="serial">Modifier</div>
+                        <div class="serial">Supprimer</div>
                     </div>
                     <?php
                     foreach ($categories as $value) {
                     ?>
                         <div class="table-row">
                             <div class="serial"><?= $value->getId(); ?></div>
-                            <div class="country"><?= $value->getNom(); ?></div>
-                            <div class="visit"><a href="index.php?controller=Category&action=modifier&id=<?= $value->getId(); ?>">Modifier</a></div>
-                            <div class="percentage"><a href="index.php?controller=Category&action=supprimer&id=<?= $value->getId(); ?>&token=<?= $_SESSION['token']; ?>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette catégorie?'));">Supprimer</a></div>
+                            <div class="serial"><?= $value->getNom(); ?></div>
+                            <div class="serial"><a href="index.php?controller=Category&action=modifier&id=<?= $value->getId(); ?>">Modifier</a></div>
+                            <div class="serial"><a href="index.php?controller=Category&action=supprimer&id=<?= $value->getId(); ?>&token=<?= $_SESSION['token']; ?>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette catégorie?'));">Supprimer</a></div>
                         </div>
                     <?php } ?>
                 </div>
