@@ -57,7 +57,7 @@
                         <ul>
                             <?php if (!\models\Session::isConnected()) { ?>
                                 <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=formLogin">Se connecter</a></li>
-                                <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=formLogin">Créer un compte</a></li>
+                                <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=ajouter">Créer un compte</a></li>
                             <?php }
                             if (\models\Session::isConnected()) { ?>
                                 <li class="nav-item"><a class="nav-link" href="index.php?controller=User&action=logout">Déconnexion</a></li>

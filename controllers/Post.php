@@ -40,9 +40,7 @@ class Post extends \controllers\Controller
         $commentsModel = new \models\managers\CommentManager();
         $comments = $commentsModel->findAllWithPost($postId);
 
-        $categoryModel = new \models\managers\CategoryManager();
-        $category = $categoryModel->getNom($post->categoryId);
-        \models\Renderer::render("post", compact('post', 'comments', 'category'));
+        \models\Renderer::render("post", compact('post', 'comments'));
     }
 
 
@@ -124,7 +122,9 @@ class Post extends \controllers\Controller
                 "Vous essayez de modifier un article qui n'existe pas"
             );
         }
-        \models\Renderer::render("updatePost", compact('post'));
+        $categoryManager = new \models\managers\CategoryManager();
+        $categories = $categoryManager->getList();
+        \models\Renderer::render("updatePost", compact('post', 'categories'));
     }
 
     function ajouter()
