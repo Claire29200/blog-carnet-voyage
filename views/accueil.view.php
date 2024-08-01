@@ -43,7 +43,7 @@
                                 <p class="date"> <?= ucfirst($value->getSlug()); ?></p>
                     </a>
                     <p class="date">
-                        <i>Derniere mise à jour le : <?= $value->getModificationDate(); ?> </i>
+                        <i>Dernière mise à jour le : <?= $value->getModificationDate(); ?> </i>
                     </p>
                 </div>
         </div>

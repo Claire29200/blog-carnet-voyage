@@ -162,7 +162,7 @@ class Post extends \controllers\Controller
 
         if (!$id || !$image || !$title || !$slug || !$content || !$author || !$modificationDate || !$userId || !$categoryId) {
             $this->redirectWithError(
-                "index.php?Post&action=liste",
+                "index.php?controller=Post&action=ajouter",
                 "Veuillez remplir tous les champs du formulaire correctement"
             );
         }
