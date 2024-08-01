@@ -34,18 +34,15 @@ class Category extends \controllers\Controller
             );
         }
 
-        $newCategory = new \models\Category([
+        $category = new \models\Category([
             'nom' => $nom
         ]);
 
-        $manager->add($newCategory);
-
-        if ($newCategory) {
-            $this->redirectWithSuccess(
-                "index.php?controller=Category&action=liste",
-                "Catégorie ajoutée avec succès"
-            );
-        }
+        $manager->add($category);
+        $this->redirectWithSuccess(
+            "index.php?controller=Category&action=liste",
+            "Catégorie ajoutée avec succès"
+        );
     }
 
     function modifier()
@@ -59,16 +56,16 @@ class Category extends \controllers\Controller
 
 
 
-        $Id_user = filter_input(INPUT_GET, 'Id_user', FILTER_VALIDATE_INT);
-        if (!$Id_user) {
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        if (!$id) {
             $this->redirectWithError(
                 "index.php?controller=Category&action=liste",
                 "Vous devez préciser un id"
             );
         }
         $manager =  $this->modelManager;
-        $user = $manager->get($Id_user);
-        if (!$user) {
+        $category = $manager->get($id);
+        if (!$category) {
             $this->redirectWithError(
                 "index.php?controller=Category&action=liste",
                 "Vous essayez de modifier une catégorie qui n'existe pas"
@@ -94,7 +91,7 @@ class Category extends \controllers\Controller
 
 
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
-        $nom = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
+        $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_SPECIAL_CHARS);
 
 
         if (!$id || !$nom) {
@@ -140,7 +137,7 @@ class Category extends \controllers\Controller
 
         \models\Renderer::render("listCategory", compact('categories'));
     }
-    
+
     function supprimer()
     {
         if (!\models\Session::isAdmin()) {

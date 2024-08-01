@@ -93,7 +93,7 @@ class CategoryManager extends \models\Database
 
   public function update(\models\Category $category)
   {
-    $query = $this->db->prepare('UPDATE category SET nom = :nom,  WHERE id = :id');
+    $query = $this->db->prepare('UPDATE category SET nom = :nom  WHERE id = :id');
     $query->bindValue(':nom', $category->getNom());
     $query->bindValue(':id', $category->getId());
     $query->execute();

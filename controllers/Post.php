@@ -40,7 +40,9 @@ class Post extends \controllers\Controller
         $commentsModel = new \models\managers\CommentManager();
         $comments = $commentsModel->findAllWithPost($postId);
 
-        \models\Renderer::render("post", compact('post', 'comments'));
+        $categoryModel = new \models\managers\CategoryManager();
+        $category = $categoryModel->getNom($post->categoryId);
+        \models\Renderer::render("post", compact('post', 'comments', 'category'));
     }
 
 

@@ -6,9 +6,6 @@
 <section class="contact-section area-padding">
   <div class="container">
     <div class="row">
-      <div class="col-12">
-        <h2 class="contact-title">Valider un commentaire</h2>
-      </div>
       <div class="col-lg-8">
         <form class="form-contact contact_form" method="post" action="index.php?controller=Comment&action=validComment">
           <div class="row">
