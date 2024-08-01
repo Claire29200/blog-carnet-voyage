@@ -432,7 +432,6 @@ ul {
 }
 .home_banner_area .banner_inner .overlay {
   background: url(../img/banner/home-banner.jpg) no-repeat scroll center center;
-  background-size: cover;
   position: absolute;
   left: 0;
   right: 0;
@@ -3425,127 +3424,6 @@ h6 {
   }
 }
 /* End Testimonials Area css
-============================================================================================ */
-/*---------------------------------------------------- */
-/*----------------------------------------------------*/
-/* Start Pricing Area css
-============================================================================================ */
-.pricing_area {
-  position: relative;
-  z-index: 1;
-}
-.pricing_area:before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 75%;
-  background: #f6f6f6;
-  background-image: url(../img/background/pattern2.png);
-  background-repeat: repeat-y;
-  z-index: 0;
-  left: 0;
-  top: 0;
-}
-.pricing_area .area-heading {
-  margin-bottom: 70px;
-}
-.pricing_area .area-heading h4 {
-  margin-bottom: 20px;
-}
-.pricing_area .col-lg-3:nth-child(1) .single-pricing .pricing-icon:after {
-  background: #fca6a6;
-}
-.pricing_area .col-lg-3:nth-child(2) .single-pricing .pricing-icon:after {
-  background: #71beb4;
-}
-.pricing_area .col-lg-3:nth-child(3) .single-pricing .pricing-icon:after {
-  background: #ed92dd;
-}
-.pricing_area .col-lg-3:nth-child(4) .single-pricing .pricing-icon:after {
-  background: #97d0ee;
-}
-
-.single-pricing {
-  text-align: left;
-  padding: 40px 0 45px;
-  background: #fff;
-  border: 1px solid #edf1f6;
-  padding: 40px 30px;
-  -webkit-transition: all 300ms linear 0s;
-  transition: all 300ms linear 0s;
-}
-.single-pricing .pricing-icon {
-  width: 150px;
-  height: 95px;
-  text-align: center;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
-  line-height: 112px;
-}
-.single-pricing .pricing-icon:after {
-  content: "";
-  position: absolute;
-  height: 70px;
-  width: 70px;
-  background: #fcefed;
-  border-radius: 100%;
-  left: 0;
-  z-index: -1;
-  top: 0;
-}
-.single-pricing .pricing-icon i {
-  font-size: 40px;
-  color: #050817;
-}
-.single-pricing .single-pricing-content h5 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #1d1d1d;
-  margin-bottom: 18px;
-  border-bottom: 1px solid #edf1f6;
-  padding-bottom: 12px;
-}
-.single-pricing .single-pricing-content h4 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #1d1d1d;
-  margin-bottom: 46px;
-}
-.single-pricing .single-pricing-content h4 span {
-  color: #7f7f7f;
-  font-size: 15px;
-  font-weight: 400;
-}
-.single-pricing .single-pricing-content h4 .currency_line {
-  font-size: 24px;
-  color: #7f7f7f;
-  font-weight: 300;
-}
-.single-pricing .single-pricing-content ul {
-  border-bottom: 1px solid #edf1f6;
-  padding-bottom: 15px;
-  margin-bottom: 20px;
-}
-.single-pricing .single-pricing-content ul li {
-  font-size: 14px;
-  color: #7f7f7f;
-  margin-bottom: 11px;
-}
-.single-pricing .single-pricing-content a {
-  font-size: 14px;
-  color: #1d1d1d;
-  border-bottom: 2px solid #edf1f6;
-  font-weight: 600;
-  padding-bottom: 5px;
-}
-.single-pricing .single-pricing-content a:hover {
-  border-bottom: 2px solid #fd1c4a;
-  -webkit-transition: all 300ms linear 0s;
-  transition: all 300ms linear 0s;
-}
-
-/* End pricing Area css
 ============================================================================================ */
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/

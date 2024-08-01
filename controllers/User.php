@@ -90,15 +90,16 @@ class User extends \controllers\Controller
 
 
 
-        $Id_user = filter_input(INPUT_GET, 'Id_user', FILTER_VALIDATE_INT);
-        if (!$Id_user) {
+
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        if (!$id) {
             $this->redirectWithError(
                 "index.php?controller=User&action=liste",
                 "Vous devez préciser un id"
             );
         }
         $manager =  $this->modelManager;
-        $user = $manager->get($Id_user);
+        $user = $manager->get($id);
         if (!$user) {
             $this->redirectWithError(
                 "index.php?controller=User&action=liste",
@@ -108,7 +109,6 @@ class User extends \controllers\Controller
 
         \models\Renderer::render("updateUser", compact('user'));
     }
-
     function ajouter()
     {
         \models\Renderer::render("addUser");
@@ -124,13 +124,13 @@ class User extends \controllers\Controller
         }
 
 
-        $Id_user = filter_input(INPUT_POST, 'Id_user', FILTER_VALIDATE_INT);
+        $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
         $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
         $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_SPECIAL_CHARS);
         $pseudo = filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_SPECIAL_CHARS);
         $userRole = filter_input(INPUT_POST, 'userRole', FILTER_SANITIZE_SPECIAL_CHARS);
 
-        if (!$Id_user || !$lastName || !$firstName  || !$pseudo || !$userRole) {
+        if (!$id || !$lastName || !$firstName  || !$pseudo || !$userRole) {
             $this->redirectWithError(
                 "index.php?controller=User&action=liste",
                 "Veuillez remplir tous les champs du formulaire correctement"
@@ -147,7 +147,7 @@ class User extends \controllers\Controller
 
         $manager = $this->modelManager;
         $user = new \models\User([
-            'Id_user' => $Id_user,
+            'id' => $id,
             'firstName' => $firstName,
             'lastName' => $lastName,
             'pseudo' => $pseudo,

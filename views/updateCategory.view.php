@@ -7,16 +7,16 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <form class="form-contact contact_form" method="post" action="index.php?controller=Category&action=modifierCategory">
+                <form class="form-contact contact_form" method="post" action="index.php?controller=Category&action=updateCategory">
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <input class="form-control" type="hidden" name="id" value="<?= $post->getId(); ?>">
+                                <input class="form-control" type="hidden" name="id" value="<?= $category->getId(); ?>">
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                Titre : <input class="form-control" type="text" name="nom" value="<?= $post->getNom(); ?>">
+                                Titre : <input class="form-control" type="text" name="nom" value="<?= $category->getNom(); ?>">
                             </div>
                         </div>
                         <input class="form-control" type="hidden" name="token" value="<?= $_SESSION['token']; ?>">
