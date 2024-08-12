@@ -35,7 +35,7 @@
                   <option value="Membre" <?php if ($user->getUserRole() == "Membre") {
                                             echo "selected";
                                           } ?>>Membre</option>
-                  <option value="Admin" <?php if ($user->getUserRole() == "Admin") {
+                  <option value="admin" <?php if ($user->getUserRole() == "admin") {
                                           echo "selected";
                                         } ?>>Admin</option>
                 </select>
