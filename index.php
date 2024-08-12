@@ -1,5 +1,8 @@
 <?php
-require('autoload.php');
+
+use models\Router;
+
+require 'autoload.php';
 
 
-\models\Router::invoke();
+Router::invoke();
