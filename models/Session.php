@@ -14,7 +14,7 @@ class Session
     {
         $_SESSION['connected'] = true;
         $_SESSION['user'] = $user;
-        if ($_SESSION['user']['userRole'] == "Admin") {
+        if ($_SESSION['user']['userRole'] == "admin") {
             $_SESSION['admin'] = true;
         }
         $token =  md5(bin2hex(openssl_random_pseudo_bytes(6)));
