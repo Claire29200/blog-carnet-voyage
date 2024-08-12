@@ -39,7 +39,7 @@
                                 <h3>
                                     <?= ucfirst($value->getTitle()); ?>
                                 </h3>
-                                
+                                <h4> Catégorie:<?= ucfirst($value->getCategoryId()); ?> </h4>
                                 <p class="date"> <?= ucfirst($value->getSlug()); ?></p>
                     </a>
                     <p class="date">
